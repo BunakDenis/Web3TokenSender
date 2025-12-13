@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web3 token sender</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAB/UlEQVR4AeSVTSh8URjGb/+/iHwlFlKSWNggCykfCyyskK9iY0lJUsqKYiWlkI1sRJTke6FYUAobhZVCFiQUFkT5/j1j7nTvzGBmysr0/M77nvfe88ydc84988/4xc/fNk9nZjthB+4gExwKdFpyGN0Dh7AHXZAF4RAKDvlq/p+7i2EIzmEL2iEFbmEJpCuabXDoO/MQ7iiFUdCgVWITxMMB9EIuxIKuEYxZmndwyN08kmodTMM1LEA9RMEGtEEypIGefJP4BpUgzagxsZpPUZThBLEKJD2JzOPoFEAfnIBVupZPQdOzTnTJNNecFlENAumBphFqYAw0kOBV5VTlM0d8AZdUVOeVJgla4BjCYByOoBlcO4DcXdZfabtmmqt4TzMIqaCnWSPqC1U7Je+GCLAqmk4haKy5qHQ/ZTX/rBiGVlsLqUEZFDUtWugO8mGwqoyOpnKR+AQ2eTO33rBPRwuaSLyBakgAUxXOxLZLnDXjJ3PzvguSEdBTaq+TGlqHEpJHWAYP+WqugXo7tacb6OgF05QEk8tYX0Bqlz/mZwzVz48h1oLXF4e6S/6Ya1C/GmgFTckz0TxXSO3y11yv+y4WOmZ1Aq6Q65gleMpfczkMqHGiaXKmniEQ80lsLkH7ep74pQIxl2kejtnw3Znj8z7HxyadOfoHshXdOx8AAAD//wDOU5UAAAAGSURBVAMA1JlYLzQlLNoAAAAASUVORK5CYII="
+      type="image/x-icon"
+    />
+    <!-- ===== Boxicons CSS ===== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
+    <div id="background-image"></div>
+    <div class="error-window show"></div>
+    <section>
+      <div id="main-form">
+        <label id="form-lable" for="privet-key">
+          <h4>Private key</h4>
+          <input name="privet-key" type="text" id="privet-key" />
+        </label>
+
+        <label id="form-lable" for="transfer-amount">
+          <h4>Transfer amount (ETH)</h4>
+          <input name="transfer-amount" type="text" id="transfer-amount" />
+        </label>
+
+        <label id="form-lable" for="public-key">
+          <h4>Public key (recipient)</h4>
+          <input name="public-key" type="text" id="public-key" />
+        </label>
+
+        <label id="form-lable" for="provider-select">
+          <h4>RPC Provider</h4>
+          <select id="provider-select">
+            <option selected value="https://sepolia.infura.io/v3/YOUR_INFURA_KEY">
+              Infura (Sepolia)
+            </option>
+            <option
+              value="https://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_KEY"
+            >
+              Alchemy (Sepolia)
+            </option>
+            <option value="https://rpc.sepolia.org">
+              Public Sepolia RPC
+            </option>
+          </select>
+        </label>
+
+        <button id="send-btn">Send</button>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
