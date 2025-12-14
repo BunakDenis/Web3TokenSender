@@ -105,6 +105,7 @@ section {
 
 .form-lable {
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 0px;
 
@@ -123,8 +124,28 @@ section {
   display: none;
 }
 
-.form-lable input, .form-lable select {
-    width: 15rem;
+.form-lable .rpc-provider-key-icon {
+  position: absolute;
+
+  top: 2.5rem;
+  right: 0.5rem;
+
+  color: black;
+
+  cursor: pointer;
+
+  font-size: 1.5rem;
+
+  transition: color 0.4s ease-in-out;
+}
+
+.form-lable .bx:hover {
+  color: gold;
+}
+
+.form-lable input,
+.form-lable select {
+  width: 15rem;
 }
 
 h3 {

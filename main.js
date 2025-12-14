@@ -16,6 +16,23 @@ const rpcProviderKeyLable = document.getElementById('rpc-provider-key-lable')
 const rpcProviderKeyInput = document.getElementById('rpc-provider-key')
 
 
+document.addEventListener('click', e => {
+    const target = e.target
+
+    if(target.classList.contains('rpc-provider-key-icon')) {
+      if(target.classList.contains('bx-eye')) {
+        rpcProviderKeyInput.type = 'password'
+        target.classList.remove('bx-eye')
+        target.classList.add('bx-eye-slash')
+      } else {
+        rpcProviderKeyInput.type = 'text'
+        target.classList.add('bx-eye')
+        target.classList.remove('bx-eye-slash')
+      }
+    }
+})
+
+
 //  Лисенер изменения провайдера
 provideSelect.addEventListener('change', () => {
   //console.log("Выбрано значение = ", provideSelect.value)
