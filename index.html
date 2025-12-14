@@ -25,39 +25,52 @@
 
   <body>
     <div id="background-image"></div>
-    <div class="error-window show"></div>
+    <div class="error-window"></div>
     <section>
       <div id="main-form">
-        <label id="form-lable" for="privet-key">
+        <label class="form-lable" for="privet-key">
           <h4>Private key</h4>
           <input name="privet-key" type="text" id="privet-key" />
         </label>
 
-        <label id="form-lable" for="transfer-amount">
+        <label class="form-lable" for="transfer-amount">
           <h4>Transfer amount (ETH)</h4>
           <input name="transfer-amount" type="text" id="transfer-amount" />
         </label>
 
-        <label id="form-lable" for="public-key">
+        <label class="form-lable" for="public-key">
           <h4>Public key (recipient)</h4>
           <input name="public-key" type="text" id="public-key" />
         </label>
 
-        <label id="form-lable" for="provider-select">
+        <label class="form-lable" for="provider-select">
           <h4>RPC Provider</h4>
           <select id="provider-select">
-            <option selected value="https://sepolia.infura.io/v3/YOUR_INFURA_KEY">
+            <option selected value="https://sepolia.infura.io/v3/">
               Infura (Sepolia)
             </option>
             <option
-              value="https://eth-sepolia.g.alchemy.com/v2/YOUR_ALCHEMY_KEY"
+              value="https://eth-sepolia.g.alchemy.com/v2/"
             >
               Alchemy (Sepolia)
             </option>
             <option value="https://rpc.sepolia.org">
               Public Sepolia RPC
             </option>
+            <option value="custom">
+              Custom RPC URL...
+            </option>
           </select>
+        </label>
+
+        <label class="form-lable hide" for="custom-rpc-url" id="custom-rpc-url-lable">
+          <h4>Custom RPC URL</h4>
+          <input name="custom-rpc-url" type="text" id="custom-rpc-url">
+        </label>
+
+        <label class="form-lable" for="rpc-provider-key" id="rpc-provider-key-lable">
+          <h4>RPC Provider key</h4>
+          <input name="rpc-provider-key" type="password" id="rpc-provider-key">
         </label>
 
         <button id="send-btn">Send</button>

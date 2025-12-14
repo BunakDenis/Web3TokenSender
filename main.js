@@ -1,28 +1,58 @@
 const { ethers } = window
 
-console.log('ethers loaded:', !!ethers);
 
+console.log('ethers loaded : ', !!ethers);
+
+
+//  Инициализация переменных
 const privateKeyInput = document.getElementById('privet-key')
 const transferAmountInput = document.getElementById('transfer-amount')
 const publicKeyInput = document.getElementById('public-key')
-const sendBtn = document.getElementById('send-btn');
-const provideSelect = document.getElementById('provider-select');
+const sendBtn = document.getElementById('send-btn')
+const provideSelect = document.getElementById('provider-select')
+const customRPCUrlLable = document.getElementById('custom-rpc-url-lable')
+const customRPCUrlInput = document.getElementById('custom-rpc-url')
+const rpcProviderKeyLable = document.getElementById('rpc-provider-key-lable')
+const rpcProviderKeyInput = document.getElementById('rpc-provider-key')
 
-/*
-    Добавить код провайдера
-*/
 
+//  Лисенер изменения провайдера
+provideSelect.addEventListener('change', () => {
+  //console.log("Выбрано значение = ", provideSelect.value)
+    if(provideSelect.value.trim() === 'custom') {
+      customRPCUrlLable.classList.remove("hide")
+      rpcProviderKeyLable.classList.add('hide')
+    } else if(provideSelect.value.trim() === 'https://rpc.sepolia.org') {
+      rpcProviderKeyLable.classList.add('hide')
+      customRPCUrlLable.classList.add('hide')
+    } else {
+      customRPCUrlLable.classList.add('hide')
+      rpcProviderKeyLable.classList.remove('hide')
+    }
+})
+
+
+//  Лисенер кнопки "send"
 sendBtn.addEventListener('click', async () => {
 
         const privateKey = privateKeyInput.value.trim()
         const amountStr = transferAmountInput.value.trim()
         const toAddress = publicKeyInput.value.trim()
-        const selectedProvider = provideSelect.value.trim()
+        let selectedProvider = provideSelect.value.trim()
+        const selectedProviderIndex = provideSelect.selectedIndex
+
+        console.log("Provider URL = ", selectedProvider)
+
+        if (selectedProviderIndex === 3) {
+          selectedProvider = customRPCUrlInput.value.trim()
+        } else if(selectedProviderIndex < 2) {
+          selectedProvider += rpcProviderKeyInput.value.trim() 
+        }
+
+        console.log("Provider URL = ", selectedProvider)
 
         const result = await sendTransaction(privateKey, toAddress, amountStr, selectedProvider)
         let windowMsg
-
-        console.log('Ответ от сервиса = ', result)
 
         if (result === 'success') {
             windowMsg = 'Поздравляю с успешной транзакцией'
@@ -34,6 +64,7 @@ sendBtn.addEventListener('click', async () => {
 
 })
 
+//  Функция отправки транзакции
 async function sendTransaction(privateKey, toAddress, amountStr, provider) {
     try {
         if (!provider) throw new Error('Provider is not selected');
@@ -43,7 +74,7 @@ async function sendTransaction(privateKey, toAddress, amountStr, provider) {
         const amount = Number(amountStr);
         if (Number.isNaN(amount) || amount <= 0) throw new Error('Amount must be a positive number');
     
-        if (!ethers.utils.isAddress(toAddress)) throw new Error('Invalid recipient address');
+        if (!ethers.utils.isAddress(toAddress)) throw new Error(`Invalid recipient address = ${toAddress}`);
     
       } catch (err) {
         console.log('Validation error:', err.message);
@@ -88,14 +119,14 @@ async function sendTransaction(privateKey, toAddress, amountStr, provider) {
       }
 }
 
+
+//  Функция отображения результата отправки транзакции
 function showMsg(msg) {
     let timeout = 0
     const msgWindow = document.querySelector('.error-window')
     const msgElement = document.createElement('p')
 
     const lastMsgElement = msgWindow.querySelector('p')
-
-    console.log(lastMsgElement)
 
     if(lastMsgElement !== null) lastMsgElement.remove()
 
@@ -109,9 +140,3 @@ function showMsg(msg) {
         }, 3000);
 }
 
-// Пример вызова
-sendTransaction(
-  "PRIVATE_KEY",
-  "0xReceiverAddress",
-  "0.01"
-);

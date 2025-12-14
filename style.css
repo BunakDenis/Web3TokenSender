@@ -38,7 +38,7 @@ body {
   justify-content: center;
 
   top: 20px;
-  left: 40vw;
+  left: 45vw;
 
   padding: 10px;
 
@@ -103,7 +103,7 @@ section {
     inset 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-#form-lable {
+.form-lable {
   display: flex;
   flex-direction: column;
   gap: 0px;
@@ -119,7 +119,11 @@ section {
   font-size: 1rem;
 }
 
-#form-lable input, #form-lable select {
+.form-lable.hide {
+  display: none;
+}
+
+.form-lable input, .form-lable select {
     width: 15rem;
 }
 
@@ -136,6 +140,7 @@ h3 {
 }
 
 #send-btn {
+  width: 10rem;
   color: #02131f;
 
   font-family: Roboto;
